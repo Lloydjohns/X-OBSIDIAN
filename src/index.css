@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* OBSIDIAN — high-end phone brand. Deep blacks, titanium, champagne accents */
+    --background: 0 0% 4%;
+    --foreground: 36 30% 92%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 36 30% 92%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 36 30% 92%;
+
+    /* Champagne / titanium gold */
+    --primary: 36 45% 70%;
+    --primary-foreground: 0 0% 6%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 36 30% 92%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 36 8% 55%;
+
+    --accent: 36 60% 60%;
+    --accent-foreground: 0 0% 6%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 36 12% 18%;
+    --input: 36 12% 14%;
+    --ring: 36 45% 70%;
+
+    --radius: 0.25rem;
+
+    /* Brand-specific tokens */
+    --obsidian: 0 0% 3%;
+    --titanium: 36 8% 55%;
+    --champagne: 36 45% 70%;
+    --champagne-glow: 36 70% 75%;
+    --carbon: 0 0% 9%;
+
+    /* Gradients */
+    --gradient-radial-glow: radial-gradient(ellipse at center, hsl(36 60% 50% / 0.18), transparent 60%);
+    --gradient-champagne: linear-gradient(135deg, hsl(36 60% 75%), hsl(28 50% 55%));
+    --gradient-edge: linear-gradient(180deg, transparent, hsl(36 45% 70% / 0.4), transparent);
+    --gradient-vignette: radial-gradient(ellipse at center, transparent 40%, hsl(0 0% 0% / 0.7) 100%);
+
+    /* Shadows */
+    --shadow-deep: 0 40px 80px -20px hsl(0 0% 0% / 0.8);
+    --shadow-glow: 0 0 80px hsl(36 60% 50% / 0.25);
+    --shadow-edge: inset 0 1px 0 hsl(36 45% 70% / 0.15);
+
+    --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 36 30% 92%;
+    --sidebar-primary: 36 45% 70%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 36 30% 92%;
+    --sidebar-border: 36 12% 18%;
+    --sidebar-ring: 36 45% 70%;
+  }
+
+  .dark {
+    /* keep same — site is dark-first */
+    --background: 0 0% 4%;
+    --foreground: 36 30% 92%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, hsl(36 60% 30% / 0.15), transparent 70%),
+      hsl(var(--background));
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Fraunces', serif;
+    font-feature-settings: 'ss01';
+    letter-spacing: -0.04em;
+  }
+
+  .font-mono-tech {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  .hairline {
+    background: linear-gradient(90deg, transparent, hsl(var(--champagne) / 0.5), transparent);
+    height: 1px;
+  }
+
+  .vertical-hairline {
+    background: linear-gradient(180deg, transparent, hsl(var(--champagne) / 0.5), transparent);
+    width: 1px;
+  }
+
+  .text-champagne {
+    color: hsl(var(--champagne));
+  }
+
+  .bg-obsidian {
+    background-color: hsl(var(--obsidian));
+  }
+
+  .bg-carbon {
+    background-color: hsl(var(--carbon));
+  }
+
+  .border-champagne\/20 {
+    border-color: hsl(var(--champagne) / 0.2);
+  }
+}
+
+@layer components {
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+  }
+
+  .ticker-track {
+    animation: ticker 60s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+.animate-fade-up { animation: fade-up 0.8s var(--transition-smooth) both; }
